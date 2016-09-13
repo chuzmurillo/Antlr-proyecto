@@ -1,0 +1,9 @@
+Abrir console
+
+ubicarse en carpeta 
+
+java -jar lib/antlr.jar Demo.g4
+
+javac -cp lib/antlr.jar *.java
+
+java -cp .;lib/antlr.jar org.antlr.v4.runtime.misc.TestRig Demo addition -gui code.demo
