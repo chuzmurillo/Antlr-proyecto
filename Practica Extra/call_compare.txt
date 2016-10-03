@@ -1,0 +1,70 @@
+.init:
+      MOV D, 232
+      JMP main  ; Data Area
+.main_data:
+.UNDEF: DB 255
+.main_string_01:
+  DB "10>5="
+  DB 0 ; Code Area
+.main_string_02:
+  DB "5>10="
+  DB 0 ; Code Area
+.compare_numberes_01:
+ DB "true"
+ DB 0 ;
+.compare_numberes_02:
+ DB "false"
+ DB 0 ;
+print_string:
+       POP C
+       POP B
+       PUSH C 
+.print_string_loop_01:
+       MOV C, [B]
+  CMP C, 0
+  JE .print_string_exit
+  MOV [D], C
+  INC D
+  INC B
+  JMP .print_string_loop_01
+.print_string_exit:
+       POP C 
+       PUSH .UNDEF
+       PUSH C
+       RET
+compare:
+ POP A
+ POP C
+ POP B
+ CMP B, C
+ JA .print_bool_loop_01
+ JB .print_bool_loop_02
+
+.print_bool_loop_01:
+ PUSH .compare_numberes_01
+ CALL print_string
+ PUSH A
+ RET
+
+.print_bool_loop_02:
+ PUSH .compare_numberes_02
+ CALL print_string
+ PUSH A
+ RET
+ 
+main: 
+ PUSH .main_string_01
+ CALL print_string
+ POP A
+ PUSH 10
+ PUSH 5
+ CALL compare
+
+ PUSH .main_string_02
+  CALL print_string
+ POP A
+ PUSH 5
+ PUSH 10
+ CALL compare
+
+ HLT

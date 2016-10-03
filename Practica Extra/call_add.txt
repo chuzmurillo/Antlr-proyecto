@@ -1,0 +1,56 @@
+.init:
+      MOV D, 232
+      JMP main  ; Data Area
+.main_data:
+.UNDEF: DB 255
+.main_string_01:
+  DB "10+56="
+  DB 0 ; Code Area
+.add_number:
+ num_x: DB 10
+ num_y: DB 56
+print_string:
+       POP C
+       POP B
+       PUSH C 
+.print_string_loop_01:
+       MOV C, [B]
+  CMP C, 0
+  JE .print_string_exit
+  MOV [D], C
+  INC D
+  INC B
+  JMP .print_string_loop_01
+.print_string_exit:
+       POP C 
+       PUSH .UNDEF
+       PUSH C
+       RET
+add_fun:
+ MOV A, [num_x]
+ MOV B, [num_y]
+ ADD A, B 
+ MOV C, A
+ RET
+print_number_loop:
+ MOV A, C
+ DIV 10
+ MOV B, A
+ MUL 10
+SUB C, A
+ ADD C, 48
+ MOV [D], C
+ INC D  
+ MOV C, B          
+ CMP A, C 
+ JNZ print_number_loop
+ RET 
+ 
+ 
+main: 
+ PUSH .main_string_01
+ CALL print_string
+ POP A
+ CALL add_fun
+ CALL print_number_loop
+ HLT
