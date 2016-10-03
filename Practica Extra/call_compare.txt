@@ -61,7 +61,7 @@ main:
  CALL compare
 
  PUSH .main_string_02
-  CALL print_string
+ CALL print_string
  POP A
  PUSH 5
  PUSH 10
