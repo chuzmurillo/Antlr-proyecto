@@ -36,7 +36,12 @@ public interface JSEmiter{
    default JSAst ASSIGN(JSAst left, JSAst right){
 	   return new JSAssign(left, right);
    }
+   default JSAst ARITH(JSAst f, List<JSAst> args){
+       return new JSArith(f, args);
+   }
+   
    default List<JSAst> ARGS(JSAst... args){ return Arrays.asList(args);}
+   default List<JSAst> ARGS(List<JSAst> args){ return args;}
    default List<JSAst> FORMALS(JSAst... args){ return Arrays.asList(args);}
    
    

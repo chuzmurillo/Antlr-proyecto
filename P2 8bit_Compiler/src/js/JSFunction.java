@@ -24,9 +24,9 @@ public class JSFunction implements JSAst{
 	          .filter(f -> f != null)
 	          .forEach(f -> f.genCode(out));
 	  
-	   out.print("){");
+	   out.println("){");
 	   if (this.body != null)
 	      this.body.genCode(out);
-	   out.print("};");
+	   out.println("};");
    }
 }

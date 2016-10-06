@@ -1,15 +1,15 @@
 package eightBit.js;
 import java.util.*;
 import java.io.*;
-public class JSCall implements JSAst{
+public class JSArith implements JSAst{
    
    private JSAst f;
    private List<JSAst> args;
    
-   public JSCall(JSAst f, JSAst e){
+   public JSArith(JSAst f, JSAst e){
       this(f, Arrays.asList(e));
    }
-   public JSCall(JSAst f, List<JSAst> args){
+   public JSArith(JSAst f, List<JSAst> args){
       this.f = f;
       this.args = args;
 	  
@@ -21,7 +21,7 @@ public class JSCall implements JSAst{
 	      this.args
 	          .stream()
 	          .filter(f -> f != null)
-	          .forEach(f -> f.genCode(out));
-	  out.println(");");
+	          .forEach(f -> f.genCode());
+	  out.print(")");
 	}
 }
