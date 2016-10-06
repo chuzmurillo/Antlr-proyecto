@@ -144,7 +144,7 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    public JSAst visitArithConstantSingle(EightBitParser.ArithConstantSingleContext ctx){
 	  // if(ctx.constant()!=null){
 		   JSAst num = visit(ctx.constant());
-		   System.err.print(ctx.constant().getText()+" \n");
+		   //System.err.print(ctx.constant().getText()+" \n");
 		   return num;
 	   //}
 	   
@@ -175,8 +175,9 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    }
    @Override
    public JSAst visitArgs(EightBitParser.ArgsContext ctx){
-	   JSAst ar = visit(ctx.expr());
-	   return ar;
+	   return BLOCK(ctx.expr().stream()
+						     .map( c -> visit(c))
+						     .collect(Collectors.toList()));
    }
    
 }
