@@ -180,5 +180,15 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
 						     .collect(Collectors.toList()));
    }
    
+   @Override
+   public JSAst visitIfStatement(EightBitParser.IfStatementContext ctx){
+		JSAst expr = visit(ctx.expr());
+		JSAst block = visit(ctx.closedStatement().get(0));
+		JSAst block2 = visit(ctx.closedStatement().get(1));
+		return IF(expr,block,block2);
+	   
+	   
+   }
+   
 }
   
