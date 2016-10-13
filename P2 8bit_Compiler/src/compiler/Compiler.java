@@ -182,6 +182,7 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    
    @Override
    public JSAst visitIfStatement(EightBitParser.IfStatementContext ctx){
+	   System.err.print("ctx expr tiene: "+ctx.expr().getText()+" \n");
 		JSAst expr = visit(ctx.expr());
 		JSAst block = visit(ctx.closedStatement().get(0));
 		JSAst block2 = visit(ctx.closedStatement().get(1));

@@ -1,2 +1,2 @@
 // Caso Demo
-fun helloWorld(){print_string("Hello world!");}
+fun helloWorld(s){return s;}

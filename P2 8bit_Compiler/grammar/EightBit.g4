@@ -9,7 +9,7 @@ eightProgram       : eightFunction+
 ;
 ////////////////////////////////////////////////////////////////////////
 // FUN
-eightFunction      : 'fun' id formals funBody 
+eightFunction      : 'fun' id formals  funBody
 ;
 
 formals            : '(' idList? ')'
@@ -18,9 +18,9 @@ idList             : id (',' id)*
 ;
 id                 : ID
 ;
-funBody            :   letStatement       
-                     | closedStatement 
-                     | emptyStatement					 
+funBody            :  closedStatement 
+                     | emptyStatement
+					
 ;
 ////////////////////////////////////////////////////////////////////////
 // STATEMENT
@@ -28,9 +28,10 @@ emptyStatement       : ';'
 ;
 letStatement       : 'let' '{'  assignStmtList? '}' closedStatement
 ;
-assignStmtList     : assignStatement (';' assignStmtList)*
+assignStmtList     : assignStatement ';'( assignStmtList)*
 ;
-closedStatement     : assignStatement  
+closedStatement     :  letStatement
+					| assignStatement  
                     | whileStatement  
 					| ifStatement     
 					| callStatement   
