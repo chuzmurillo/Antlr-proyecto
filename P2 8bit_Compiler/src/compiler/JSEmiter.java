@@ -14,6 +14,10 @@ public interface JSEmiter{
 	   return new JSEmpty();
    }
    
+   default JSAst LET(JSAst asst, JSAst lisaast){
+	   return new JSLet(asst, lisaast);
+   }
+   
    default JSNum NUM(double value){ return new JSNum(value);}
    
    default JSId  ID(String value){return new JSId(value);}
@@ -22,11 +26,16 @@ public interface JSEmiter{
            return new JSFunction(id, formals, body);
    }
    
-   
-   default JSIf IF(JSAst c, JSAst t, JSAst e){
-       return new JSIf(c, e, t);
+   default JSRelMas REL(JSAst a, JSAst b){
+	   return new JSRelMas(a,b);
    }
    
+   default JSIf IF(JSAst c, JSAst t, JSAst e){
+       return new JSIf(c,t,e);
+   }
+   default JSWhile WHILE(JSAst c, JSAst t){
+       return new JSWhile(c, t);
+   }
    default JSCall CALL(JSAst f, List<JSAst> args){
        return new JSCall(f, args);
    }

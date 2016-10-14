@@ -142,11 +142,8 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    
    @Override
    public JSAst visitArithConstantSingle(EightBitParser.ArithConstantSingleContext ctx){
-	  // if(ctx.constant()!=null){
 		   JSAst num = visit(ctx.constant());
-		   //System.err.print(ctx.constant().getText()+" \n");
 		   return num;
-	   //}
 	   
    }
    
@@ -182,13 +179,68 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    
    @Override
    public JSAst visitIfStatement(EightBitParser.IfStatementContext ctx){
-	   System.err.print("ctx expr tiene: "+ctx.expr().getText()+" \n");
 		JSAst expr = visit(ctx.expr());
-		JSAst block = visit(ctx.closedStatement().get(0));
-		JSAst block2 = visit(ctx.closedStatement().get(1));
-		return IF(expr,block,block2);
+		if(ctx.closedStatement().size() > 1){
+		return IF(expr,visit(ctx.closedStatement().get(0)),visit(ctx.closedStatement().get(1)));
+		}
+		return IF(expr,visit(ctx.closedStatement().get(0)),null);
 	   
 	   
+   }
+   
+   @Override
+   public JSAst visitLetStatement(EightBitParser.LetStatementContext ctx){
+	   EightBitParser.AssignStmtListContext assC = ctx.assignStmtList();
+	   JSAst assT = null;
+	   if (assC == null ) {
+		   assT = BLOCK();
+		}
+	   else {
+		   assT = visit(assC);
+		}
+		return LET(assT,visit(ctx.closedStatement()));
+   }
+   
+   
+   @Override
+   public JSAst visitAssignStmtList(EightBitParser.AssignStmtListContext ctx){
+	   return  BLOCK(ctx.assignStatement().stream()
+	                                      .map( c -> visit(c))
+						                  .collect(Collectors.toList()));
+	   
+   }
+   
+   @Override
+   public JSAst visitWhileStatement(EightBitParser.WhileStatementContext ctx){
+		JSAst expr = visit(ctx.expr());
+		JSAst block = visit(ctx.closedStatement());
+		return WHILE(expr,block);
+   }
+   
+   @Override
+   public JSAst visitRelOperator(EightBitParser.RelOperatorContext ctx){
+	   return  OPER(ctx.getText());
+	   
+   }
+   
+   @Override
+   public JSAst visitRelMonom(EightBitParser.RelMonomContext ctx){
+	   return  BLOCK(ctx.relOperation().stream()
+	                                      .map( c -> visit(c))
+						                  .collect(Collectors.toList()));
+   }
+   
+   
+   @Override
+   public JSAst visitRelOperation(EightBitParser.RelOperationContext ctx){
+	   return  REL(visit(ctx.arithOperation()),BLOCK(ctx.relMas().stream()
+	                                      .map( c -> visit(c))
+						                  .collect(Collectors.toList())));
+   }
+   
+   @Override
+   public JSAst visitRelMas(EightBitParser.RelMasContext ctx){
+	   return REL(visit(ctx.relOperator()),visit(ctx.arithOperation()));
    }
    
 }

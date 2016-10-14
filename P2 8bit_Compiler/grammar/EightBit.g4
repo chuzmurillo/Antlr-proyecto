@@ -28,7 +28,7 @@ emptyStatement       : ';'
 ;
 letStatement       : 'let' '{'  assignStmtList? '}' closedStatement
 ;
-assignStmtList     : assignStatement ';'( assignStmtList)*
+assignStmtList     : assignStatement ';'( assignStatement ';'?)*
 ;
 closedStatement     :  letStatement
 					| assignStatement  
@@ -58,9 +58,10 @@ expr            : relMonom ('||' relMonom)*
 ;
 relMonom        : relOperation ('&&' relOperation)*
 ;
-
-relOperation    : arithOperation ( relOperator arithOperation)*
+relOperation    : arithOperation ( relMas)*
                     | '!'  relOperation
+;
+relMas 			: relOperator arithOperation
 ;
 relOperator     :	('>' | '<' | '==' | '<=' | '>=' | '!=')
 ;			

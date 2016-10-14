@@ -16,8 +16,10 @@ public class JSIf implements JSAst{
 	 this.c.genCode(out); 
 	 out.format(")"); 
 	 this.t.genCode(out); 
+	 if(e!=null){
 	 out.format("else "); 
 	 this.e.genCode(out);
-	 out.format(";"); 
-   }
+	 }
+
+	}
 }

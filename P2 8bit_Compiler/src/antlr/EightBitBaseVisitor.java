@@ -157,6 +157,13 @@ public class EightBitBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitRelMas(EightBitParser.RelMasContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitRelOperator(EightBitParser.RelOperatorContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

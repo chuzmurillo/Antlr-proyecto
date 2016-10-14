@@ -27,6 +27,6 @@ public class JSFunction implements JSAst{
 	   out.println("){");
 	   if (this.body != null)
 	      this.body.genCode(out);
-	   out.println("};");
+	   out.println("}");
    }
 }
