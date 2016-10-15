@@ -65,16 +65,19 @@ relMas 			: relOperator arithOperation
 ;
 relOperator     :	('>' | '<' | '==' | '<=' | '>=' | '!=')
 ;			
-arithOperation  : arithMonom  (oper = ('+' | '-')  arithMonom)*
+arithOperation  : arithMonom  ((oper = ('+' | '-'))  arithMonom)*
 ;
-arithMonom      : arithSingle ((oper = '*' | '/')  arithSingle)*
+arithMonom      : arithSingle operTDArithSingle*
 ;
+
 arithSingle     :  '-' arithOperation #ArithMinusSingle
                    | '(' expr ')'     #ArithParsSingle
 				   | id arguments?    #ArithIdSingle
 				   | constant         #ArithConstantSingle
 				   
 		           
+;
+operTDArithSingle : (oper = ('*' | '/')) arithSingle
 ;
 constant        :    NUMBER  #ExprNum 
                    | STRING  #ExprString 

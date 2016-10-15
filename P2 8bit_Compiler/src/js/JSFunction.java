@@ -17,14 +17,14 @@ public class JSFunction implements JSAst{
 	  this.name = name;
    }
    public void genCode(PrintStream out){
-       out.format("function %s(", this.name.getValue());
+       out.format(".fun_%s:\n", this.name.getValue());
 	   if (this.formals != null)
 	      this.formals
 	          .stream()
 	          .filter(f -> f != null)
 	          .forEach(f -> f.genCode(out));
 	  
-	   out.println("){");
+	   out.println("{");
 	   if (this.body != null)
 	      this.body.genCode(out);
 	   out.println("}");

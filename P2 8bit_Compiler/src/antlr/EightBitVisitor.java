@@ -183,6 +183,12 @@ public interface EightBitVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArithConstantSingle(EightBitParser.ArithConstantSingleContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link EightBitParser#operTDArithSingle}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperTDArithSingle(EightBitParser.OperTDArithSingleContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ExprNum}
 	 * labeled alternative in {@link EightBitParser#constant}.
 	 * @param ctx the parse tree

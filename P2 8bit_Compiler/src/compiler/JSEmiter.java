@@ -13,7 +13,10 @@ public interface JSEmiter{
    default JSAst EMPTY(){
 	   return new JSEmpty();
    }
-   
+   default JSAst FOLD_LEFT(JSAst left, JSAst right){
+	   JSOperation rightOperation = (JSOperation)right;
+	   return new JSOperation(rightOperation.getOper(), left, rightOperation.getRight());
+   }
    default JSAst LET(JSAst asst, JSAst lisaast){
 	   return new JSLet(asst, lisaast);
    }
