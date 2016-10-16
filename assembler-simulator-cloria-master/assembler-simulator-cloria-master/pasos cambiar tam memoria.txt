@@ -1,0 +1,13 @@
+Pasos para aumentar la memoria en 8bit - asembler:
+
+ARCHIVO       |  LINEA  | CAMBIO
+--------------+---------+--------
+memory.js     | 3       |  poner en tamaño de array, tamaño de memoria deseada;
+asm.js        | 134	|  cambiar valor maximo de numero. Valor maximo = total memoria - 1;
+controller.js | 17      |  poner outputStartIndex donde se desee que inicie espacio de memoria para display;
+cpu.js        | 589     |  colocar max posicion de la pila (maxSP). Ideal poner valor de outputStartIndex - 1;
+cpu.js        | 75      |  cambiar dentro de metodo checkOperation, todos los valores != de 0, por total memoria - 1;
+
+nota->  se agrego print_string dentro de codigo, tambien cambiar archivo cpu, poner valor de self.display= outputStartIndex+1 
+
+nota2 -> se podrá enviar por parametros en url el tamaño de la memoria?

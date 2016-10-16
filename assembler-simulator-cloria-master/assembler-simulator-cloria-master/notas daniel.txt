@@ -1,0 +1,2 @@
+cambié el gruntFile para evitar el error de trailing whitspaces;
+Recordar preguntar a Lord "trailing whitespace"

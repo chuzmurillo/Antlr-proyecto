@@ -1,0 +1,5 @@
+set classpath=lib;%classpath%
+bats\build_parser.bat
+grun eightBit.compile.EightBit eightProgram cases\helloWorld.8bit -gui
+bats\build_compiler.bat
+bats\test_project.bat factorial.8bit       clase eightbitc
