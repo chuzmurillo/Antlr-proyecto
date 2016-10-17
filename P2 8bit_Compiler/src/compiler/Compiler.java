@@ -22,8 +22,7 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    protected List<JSAst> statements = new ArrayList<>();
    
    public void genCode(){
-      this.statements.stream()
-	                 .forEach( t -> t.genCode());
+		this.program.genCode();
    }
    public JSAst compile(ParseTree tree){
       return visit(tree);

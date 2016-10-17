@@ -1,2 +1,7 @@
 // Caso Demo
-fun helloWorld(s){ds = s + x*y/z*w; return ds;}
+//fun helloWorld(s){ds = s + x*y/z*w; return ds;}
+
+fun main(){
+	print_string("Hello World!");
+	
+}
