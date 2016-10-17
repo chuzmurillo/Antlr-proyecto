@@ -12,14 +12,27 @@ public class JSIf implements JSAst{
    }
    @Override
    public void genCode(PrintStream out){
-     out.format("if("); 
-	 this.c.genCode(out); 
-	 out.format(")"); 
-	 this.t.genCode(out); 
-	 if(e!=null){
-	 out.format("else "); 
-	 this.e.genCode(out);
-	 }
+     printString(out);
 
+	}
+	
+	public void printString(PrintStream out){
+		//TRUE
+		out.println(".compare_numberes_01:");
+		out.println("DB \"true\"");
+		out.println("DB 0;");
+		//FALSE
+		out.println(".compare_numberes_02:");
+		out.println("DB \"false\"");
+		out.println("DB 0;");
+		//COPARE
+		out.println("compare:");
+		out.println("POP A");
+		out.println("POP C");
+		out.println("POP B");
+		out.println("CMP B, C");
+		out.println("JA .print_bool_loop_01");
+		out.println("JB .print_bool_loop_02");
+		//END
 	}
 }
