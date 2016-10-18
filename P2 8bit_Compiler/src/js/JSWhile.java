@@ -17,4 +17,13 @@ public class JSWhile implements JSAst{
 	 this.t.genCode(out); 
 	 out.format("}"); 
    }
+   
+   @Override
+   public void genData(PrintStream out){
+     out.format("while("); 
+	 this.c.genData(out); 
+	 out.format("){"); 
+	 this.t.genData(out); 
+	 out.format("}"); 
+   }
 }

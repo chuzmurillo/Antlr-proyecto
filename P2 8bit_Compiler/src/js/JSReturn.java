@@ -12,4 +12,9 @@ public class JSReturn implements JSAst{
 	  this.e.genCode();
 	  out.print(";");
    }
+   public void genData(PrintStream out){
+      out.print("return ");
+	  this.e.genData();
+	  out.print(";");
+   }
 }

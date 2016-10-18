@@ -16,4 +16,10 @@ public class JSOperation implements  JSAst{
 	  oper.genCode(out);
 	  right.genCode(out);
    }
+   
+   public void genData(PrintStream out){
+      left.genData(out);
+	  oper.genData(out);
+	  right.genData(out);
+   }
 }

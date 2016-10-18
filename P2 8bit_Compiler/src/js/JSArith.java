@@ -24,4 +24,15 @@ public class JSArith implements JSAst{
 	          .forEach(f -> f.genCode());
 	  out.print(")");
 	}
+	
+	public void genData(PrintStream out){
+	  this.f.genData(out);
+	  out.print("(");
+	  if (this.args != null)
+	      this.args
+	          .stream()
+	          .filter(f -> f != null)
+	          .forEach(f -> f.genData());
+	  out.print(")");
+	}
 }

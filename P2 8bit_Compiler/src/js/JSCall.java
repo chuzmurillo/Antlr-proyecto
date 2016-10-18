@@ -21,23 +21,21 @@ public class JSCall implements JSAst{
            .stream()
            .filter(x -> x != null)
            .forEach(x -> {  
-			   out.print(";");
-			   this.f.genData(out);  
-		out.print(":\n DB ");
-        x.genData(out); 
-        out.println("\n DB 0");
-        });
-   //out.print(" CALL .");
- //  this.f.genData(out);
+				out.print(".");
+				this.f.genData(out);  
+				out.print("_data_01:\n	DB	");
+				x.genData(out); 
+				out.println("\n	DB	0");
+				});
  }
 
    public void genCode(PrintStream out){
-	   out.print("PUSH .");
-	   this.f.genCode(out);
-		out.print("\nCALL ");
+		out.print("PUSH .");
+		this.f.genCode(out);
+		out.print("_data_01\n	CALL ");
 
 	   	this.f.genCode(out);
-		out.print("\nHLT");
+		out.print("\n	HLT");
    
    
    

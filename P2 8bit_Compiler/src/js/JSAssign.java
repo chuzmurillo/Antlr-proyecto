@@ -9,4 +9,8 @@ public class JSAssign extends  JSOperation{
       super.genCode(out);
 	  out.print(";");
    }
+   public void genData(PrintStream out){
+      super.genData(out);
+	  out.print(";");
+   }
 }

@@ -7,4 +7,8 @@ public class JSEmpty implements JSAst{
    public void genCode(PrintStream out){
 	   out.println("/* empty statement! */");
    }
+   @Override
+   public void genData(PrintStream out){
+	   out.println("/* empty statement! */");
+   }
 }

@@ -15,6 +15,10 @@ public class JSIf implements JSAst{
      printString(out);
 
 	}
+	public void genData(PrintStream out){
+     printString(out);
+
+	}
 	
 	public void printString(PrintStream out){
 		//TRUE

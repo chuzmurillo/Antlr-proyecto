@@ -14,4 +14,10 @@ public class JSRelMas implements JSAst{
 	 this.c.genCode(out); 
 	 this.t.genCode(out); 
 	}
+	
+   @Override
+   public void genData(PrintStream out){
+	 this.c.genData(out); 
+	 this.t.genData(out); 
+	}
 }

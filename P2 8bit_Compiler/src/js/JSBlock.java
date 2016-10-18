@@ -12,5 +12,8 @@ public class JSBlock implements JSAst {
    public void genCode(PrintStream out){
        this.members.stream().forEach( t -> t.genCode(out));
    }
+   public void genData(PrintStream out){
+       this.members.stream().forEach( t -> t.genData(out));
+   }
    
 }

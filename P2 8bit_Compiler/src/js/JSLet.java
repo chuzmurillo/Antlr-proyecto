@@ -16,4 +16,11 @@ public class JSLet implements JSAst{
 	 out.format("}"); 
 	 this.t.genCode(out);  
    }
+   @Override
+   public void genData(PrintStream out){
+     out.format("let {"); 
+	 this.c.genData(out); 
+	 out.format("}"); 
+	 this.t.genData(out);  
+   }
 }
