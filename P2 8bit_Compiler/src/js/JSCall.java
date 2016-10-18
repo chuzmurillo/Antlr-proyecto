@@ -30,6 +30,7 @@ public class JSCall implements JSAst{
  }
 
    public void genCode(PrintStream out){
+	   
 		out.print("PUSH .");
 		this.f.genCode(out);
 		out.print("_data_01\n	CALL ");
