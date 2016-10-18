@@ -5,7 +5,10 @@
 .UNDEF: DB 255
 
 .print_string_data_01:
-	DB	"Hello World!"
+	DB	"10+56="
+	DB	0
+.print_number_data_01:
+	DB	10.0 56.0
 	DB	0
 print_string:
 	POP C
@@ -50,9 +53,13 @@ print_number:
 	PUSH .UNDEF
 	PUSH C
 	RET
-main:
+add:
+	main:
 		
 	PUSH .print_string_data_01
 	CALL print_string
+	POP A	
+	PUSH .print_number_data_01
+	CALL print_number
 	POP A
 	HLT

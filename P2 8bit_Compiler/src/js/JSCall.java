@@ -16,7 +16,7 @@ public class JSCall implements JSAst{
    }
 
    public void genData(PrintStream out){
-   if (this.args != null)
+   if (this.args != null){
        this.args
            .stream()
            .filter(x -> x != null)
@@ -25,22 +25,17 @@ public class JSCall implements JSAst{
 				this.f.genData(out);  
 				out.print("_data_01:\n	DB	");
 				x.genData(out); 
-				out.println("\n	DB	0");
 				});
- }
-
+		out.println("\n	DB	0");
+		}
+  }
    public void genCode(PrintStream out){
 	   
-		out.print("PUSH .");
+		out.print("	\n	PUSH .");
 		this.f.genCode(out);
 		out.print("_data_01\n	CALL ");
-
 	   	this.f.genCode(out);
-		out.print("\n	HLT");
-   
-   
-   
-   
+			out.print("\n	POP A");
    }
 	
 

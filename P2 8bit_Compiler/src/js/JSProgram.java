@@ -21,10 +21,12 @@ public class JSProgram implements JSAst{
     out.println(".UNDEF: DB 255\n");
     functions.stream().forEach( t -> t.genData(out));
 	printString(out);
+	printNumber(out);
    }
     public void genCode(PrintStream out){
      
 	functions.stream().forEach( t -> t.genCode(out));
+		out.print("\n	HLT");
    }
    
    
@@ -46,5 +48,35 @@ public class JSProgram implements JSAst{
 	   out.println("	PUSH .UNDEF");
 	   out.println("	PUSH C");
 	   out.println("	RET");
+   }
+   
+   public void printNumber(PrintStream out){
+	   out.println("print_number:");
+	   out.println("	POP C");
+       out.println("	POP A");
+       out.println("	PUSH C ");
+	   out.println(".number_to_Stack:");
+       out.println("	MOV B,A;");
+	   out.println("	DIV 10;");
+  	   out.println("	MUL 10;");
+	   out.println("	SUB B, A;");
+	   out.println("	PUSH B;");
+	   out.println(" 	CMP A, 0;");
+	   out.println("	JE .number_to_display;");
+	   out.println("	DIV 10;");
+	   out.println("	JMP .number_to_Stack;");
+       out.println(".number_to_display:");
+       out.println("	POP A;");
+	   out.println("	CMP A,C;");
+	   out.println("	JE .exit;");
+       out.println("	ADD A, 0x30;");
+	   out.println("	MOV [D], A;");
+	   out.println("	INC D;");
+	   out.println("	JMP .number_to_display;");
+	   out.println(".exit:	");
+       out.println("	PUSH .UNDEF");
+       out.println("	PUSH C");
+       out.println("	RET");
+	   
    }
 }
