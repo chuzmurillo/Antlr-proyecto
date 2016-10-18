@@ -6,12 +6,16 @@ public interface JSAst{
       genData(System.out);
    }
    default void genData(PrintStream out){
-    
+
    }
 
    default void genCode(){
       genCode(System.out);
    }
    default void genCode(PrintStream out){
+   }
+
+   default String getText(){
+     return  "***DEFAULT TEXT***";
    }
 }
