@@ -14,6 +14,27 @@ public class JSCall implements JSAst{
       this.args = args;
 	  
    }
+   public void genData(PrintStream out){
+
+
+   }
+
+   public void genCode(PrintStream out){
+   if (this.args != null)
+       this.args
+           .stream()
+           .filter(x -> x != null)
+           .forEach(x -> { 
+        out.print(".");
+        f.genData(out);
+        out.print("_"++":\n DB "); 
+        x.genCode(out); 
+        out.println("\n DB 0");
+        });
+   //out.print(" CALL .");
+   this.f.genCode(out);
+ }
+
    public void genCode(PrintStream out){
 	  if (this.args != null)
 	      this.args
@@ -27,27 +48,6 @@ public class JSCall implements JSAst{
 	  //this.f.genCode(out);
 	}
 	
-    public void printString(PrintStream out){
-	   out.println("print_string:");
-	   out.println("	POP C");
-	   out.println("	POP B");
-	   out.println("	PUSH C");
-	   out.println(".print_string_loop_01:");
-	   out.println("	MOV C, [B]");
-	   out.println("	CMP C, 0");
-	   out.println("	CMP C, 0");
-	   out.println("	JE .print_string_exit");
-	   out.println("	JE .print_string_exit");
-	   out.println("	MOV [D], C");
-	   out.println("	INC D");
-	   out.println("	INC B");
-	   out.println("	JMP .print_string_loop_01");
-	   out.println(".print_string_exit:");
-	   out.println("	POP C ");
-	   out.println("	PUSH .UNDEF");
-	   out.println("	PUSH C");
-	   out.println("	RET");
-   }
-	
+
 	
 }

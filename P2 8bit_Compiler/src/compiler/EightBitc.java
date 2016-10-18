@@ -24,7 +24,7 @@ public class EightBitc {
  		   is = new FileInputStream(inputFile);
 		   System.err.println("EightBitc Reading from " + inputFile);
 		} else{
-		   System.err.println("EightBitc Reading from console (enter CTRL-Z+ENTER to finish");
+		   System.err.println("EightBitc Reading from console (enter CTRL-Z + ENTER to finish");
 		}
 		
         ANTLRInputStream input = new ANTLRInputStream(is);
@@ -36,7 +36,9 @@ public class EightBitc {
 		System.err.println("EightBitc v0.0 CR II-2016");
 		Compiler comp = new Compiler();
 		comp.compile(tree);
-		comp.genCode();
+		
+        comp.genData();
+        comp.genCode();
 		
     }
 }

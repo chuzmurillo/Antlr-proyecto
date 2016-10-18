@@ -21,6 +21,10 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    }
    protected List<JSAst> statements = new ArrayList<>();
    
+    public void genData(){
+		this.program.genData();
+   }
+
    public void genCode(){
 		this.program.genCode();
    }

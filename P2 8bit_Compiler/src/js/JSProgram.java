@@ -13,12 +13,16 @@ public class JSProgram implements JSAst{
       this.functions = functions;
 	  this.name = name;
    }
-    public void genCode(PrintStream out){
+   public void genData(PrintStream out){
     out.println(".init:");
-    out.println("	MOV D, 232");
-    out.println("	JMP main");
+    out.println("   MOV D, 232");
+    out.println("   JMP main");
     out.println(".main_data:");
     out.println(".UNDEF: DB 255\n");
+    //functions.stream().forEach( t -> t.genData(out));
+   }
+    public void genCode(PrintStream out){
+     
 	functions.stream().forEach( t -> t.genCode(out));
    }
 }

@@ -16,18 +16,26 @@ public class JSFunction implements JSAst{
 	  this.body = body;
 	  this.name = name;
    }
+
+   public void genData(PrintStream out){
+		out.format(".%s_data:\n	", this.name.getValue());
+	   if (this.body != null)
+	   this.body.genData(out);
+
+   }
    public void genCode(PrintStream out){
-	   
+out.format("%s:\n	", this.name.getValue());
 	   if (this.body != null)
 	      this.body.genCode(out);
+		  
 	  
-	   if (this.formals != null && !this.name.getValue().equals("main")){
+	 /*  if (this.formals != null && !this.name.getValue().equals("main")){
       // out.format(".%s_data:\n	", this.name.getValue());
 	  /* this.formals
 				.stream()
 				.filter(f -> f != null)
 				.forEach(f -> {f.genCode(out); out.println(" tamaño de formals "+formals.size());});
-				*/
+				
 	   }
 	   
       // out.format("\n%s:\n	", this.name.getValue());
@@ -35,9 +43,9 @@ public class JSFunction implements JSAst{
 	      this.formals
 	          .stream()
 	          .filter(f -> f != null)
-	          .forEach();*/
+	          .forEach();
 	  
-	   out.println("\n\n");
+	   out.println("\n\n");*/
    }
    
    

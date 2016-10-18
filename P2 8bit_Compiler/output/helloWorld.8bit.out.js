@@ -1,6 +1,6 @@
 .init:
-	MOV D, 232
-	JMP main
+   MOV D, 232
+   JMP main
 .main_data:
 .UNDEF: DB 255
 
@@ -27,7 +27,5 @@ print_string:
 	PUSH C
 	RET
 
-main:
-	
 
 
