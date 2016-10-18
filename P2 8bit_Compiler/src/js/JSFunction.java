@@ -18,13 +18,13 @@ public class JSFunction implements JSAst{
    }
 
    public void genData(PrintStream out){
-		out.format(".%s_data:\n	", this.name.getValue());
+	//out.format(".%s_data:\n	", this.name.getValue());
 	   if (this.body != null)
 	   this.body.genData(out);
 
    }
    public void genCode(PrintStream out){
-out.format("%s:\n	", this.name.getValue());
+	out.format("%s:\n	", this.name.getValue());
 	   if (this.body != null)
 	      this.body.genCode(out);
 		  

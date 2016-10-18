@@ -14,39 +14,35 @@ public class JSCall implements JSAst{
       this.args = args;
 	  
    }
+
    public void genData(PrintStream out){
-
-
-   }
-
-   public void genCode(PrintStream out){
    if (this.args != null)
        this.args
            .stream()
            .filter(x -> x != null)
-           .forEach(x -> { 
-        out.print(".");
-        f.genData(out);
-        out.print("_"++":\n DB "); 
-        x.genCode(out); 
+           .forEach(x -> {  
+			   out.print(";");
+			   this.f.genData(out);  
+		out.print(":\n DB ");
+        x.genData(out); 
         out.println("\n DB 0");
         });
    //out.print(" CALL .");
-   this.f.genCode(out);
+ //  this.f.genData(out);
  }
 
    public void genCode(PrintStream out){
-	  if (this.args != null)
-	      this.args
-	          .stream()
-	          .filter(f -> f != null)
-	          .forEach(f -> {out.print("."); this.f.genCode(out); out.print("_data:\n	DB "); f.genCode(out); out.println("\n	DB 0");});
-	 // if(this.f.getValue().equals("print_string")){
-		  printString(out);
-	  //}
-	  //out.print("	CALL .");
-	  //this.f.genCode(out);
-	}
+	   out.print("PUSH .");
+	   this.f.genCode(out);
+		out.print("\nCALL ");
+
+	   	this.f.genCode(out);
+		out.print("\nHLT");
+   
+   
+   
+   
+   }
 	
 
 	

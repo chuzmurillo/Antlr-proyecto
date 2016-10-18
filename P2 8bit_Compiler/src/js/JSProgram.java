@@ -19,7 +19,7 @@ public class JSProgram implements JSAst{
     out.println("   JMP main");
     out.println(".main_data:");
     out.println(".UNDEF: DB 255\n");
-    //functions.stream().forEach( t -> t.genData(out));
+    functions.stream().forEach( t -> t.genData(out));
    }
     public void genCode(PrintStream out){
      
