@@ -17,8 +17,8 @@ public class JSProgram implements JSAst{
     out.println(".init:");
     out.println("   MOV D, 232");
     out.println("   JMP main");
-    out.println(".main_data:");
-    out.println(".UNDEF: DB 255\n");
+   // out.println(".main_data:");
+   
     functions.stream().forEach( t -> t.genData(out));
 	printString(out);
 	printNumber(out);

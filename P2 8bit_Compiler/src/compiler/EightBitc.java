@@ -36,8 +36,6 @@ public class EightBitc {
 		System.err.println("EightBitc v0.0 CR II-2016");
 		Compiler comp = new Compiler();
 		comp.compile(tree);
-		
-        comp.genData();
         comp.genCode();
 		
     }

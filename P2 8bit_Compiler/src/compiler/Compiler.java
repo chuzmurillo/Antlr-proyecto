@@ -21,12 +21,11 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    }
    protected List<JSAst> statements = new ArrayList<>();
    
-    public void genData(){
-		this.program.genData();
-   }
+  
 
    public void genCode(){
-		this.program.genCode();
+     this.program.genData();
+	//	this.program.genCode();
    }
    public JSAst compile(ParseTree tree){
       return visit(tree);
@@ -40,7 +39,7 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    @Override
    public JSAst visitEightFunction(EightBitParser.EightFunctionContext ctx){
       
-      JSId id = (JSId)visit(ctx.id());
+    JSId id = (JSId)visit(ctx.id());
 	  JSAst f = visit(ctx.formals());
 	  JSAst body = visit(ctx.funBody());
 	  JSAst function = FUNCTION(id, FORMALS(f), body);
@@ -132,8 +131,8 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
 	  if(ctx.arguments()!=null){
 	  JSBlock args = (JSBlock)visit(ctx.arguments());
 	  List <JSAst> mas = ARGS(args.getMembers());
-	  System.err.print("text de arguments = " + ctx.arguments().getText()+ "\n");
-	  return ARITH(id, ARGS(args));
+	 // System.err.print("text de arguments = " + ctx.arguments().getText()+ "\n");
+	  return ARITH(id,mas);
 	  }
 	  return id;
    }
