@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.*;
 
 
 public class EightBitc {
@@ -34,6 +35,7 @@ public class EightBitc {
         ParseTree tree = parser.eightProgram(); 
         
 		System.err.println("EightBitc v0.0 CR II-2016");
+	
 		Compiler comp = new Compiler();
 		comp.compile(tree);
         comp.genCode();

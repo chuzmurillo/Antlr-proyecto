@@ -2,9 +2,8 @@
    MOV D, 232
    JMP main
 .salute_data:
-	.print_string_data_01:
-	DB	s
-	DB	0
+.print_string_data_01:
+	s: DB	0
 .main_data:
 	.UNDEF: DB 255
 .salute_data_01:
@@ -54,10 +53,13 @@ print_number:
 	PUSH C
 	RET
 salute:
-		
+	POP C
 	PUSH .print_string_data_01
 	CALL print_string
-	POP Amain:
+	POP A	
+	PUSH C
+	RET
+main:
 		
 	PUSH .salute_data_01
 	CALL salute

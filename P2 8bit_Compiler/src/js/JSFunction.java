@@ -20,6 +20,12 @@ public class JSFunction implements JSAst{
    }
 
    public void genData(PrintStream out){
+	   
+	  parametros.add(name);
+	  
+	  this.formals.stream().
+		forEach(f -> parametros.add(f));
+		
 	out.format(".%s_data:\n	", this.name.getValue());
    if(this.name.getValue().equals("main")){
        out.print(".UNDEF: DB 255\n");
@@ -29,6 +35,11 @@ public class JSFunction implements JSAst{
    }
 
    public void genCode(PrintStream out){
+		
+	  /*if(parametros.size()!=0){
+	  parametros.get(0).genCode(out);
+	  out.print("tamaño de la vara -------------------------->"+parametros.size());
+	  }*/
 	out.format("%s:\n	", this.name.getValue());
 	if(!this.name.getValue().equals("main")){
      
@@ -38,6 +49,7 @@ public class JSFunction implements JSAst{
 	  out.print("	PUSH C\n");
 	  out.print("	RET\n");
 		}else{
+			
 		this.body.genCode(out);
 	}
    }

@@ -1,5 +1,6 @@
 package eightBit.js;
 import java.io.*;
+import java.util.*;
 
 public interface JSAst{
     default void genData(){
@@ -18,4 +19,5 @@ public interface JSAst{
    default String getText(){
      return  "***DEFAULT TEXT***";
    }
+   List<JSAst> parametros = new LinkedList<JSAst>();
 }

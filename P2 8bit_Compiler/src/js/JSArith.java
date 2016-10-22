@@ -26,6 +26,7 @@ public class JSArith implements JSAst{
 				  out.print("\n");
 			  
 			  });
+			  
 	}
 	
 	public void genData(PrintStream out){
@@ -43,5 +44,6 @@ public class JSArith implements JSAst{
 			  
 	  });
 	  }
+	  
 	}
 }
