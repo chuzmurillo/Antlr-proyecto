@@ -1,10 +1,14 @@
 .init:
    MOV D, 232
    JMP main
+.salute_data:
+	.print_string_data_01:
+	DB	s
+	DB	0
 .main_data:
 	.UNDEF: DB 255
-.print_string_data_01:
-	DB	"Hello World!"
+.salute_data_01:
+	DB	"Hello 666!"
 	DB	0
 print_string:
 	POP C
@@ -49,9 +53,13 @@ print_number:
 	PUSH .UNDEF
 	PUSH C
 	RET
-main:
+salute:
 		
 	PUSH .print_string_data_01
 	CALL print_string
+	POP Amain:
+		
+	PUSH .salute_data_01
+	CALL salute
 	POP A
 	HLT

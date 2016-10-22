@@ -15,9 +15,8 @@ public class JSArith implements JSAst{
 	  
    }
    public void genCode(PrintStream out){
-	  this.f.genCode(out);
-	 //out.print("(");
-	  /*if (this.args != null)
+	  //this.f.genCode(out);
+	 if (this.args != null)
 	      this.args
 	          .stream()
 	          .filter(f -> f != null)
@@ -26,8 +25,7 @@ public class JSArith implements JSAst{
 				  f.genCode();
 				  out.print("\n");
 			  
-			  });*/
-	  //out.print(")");
+			  });
 	}
 	
 	public void genData(PrintStream out){

@@ -2,7 +2,9 @@
    MOV D, 232
    JMP main
 .add_data:
-	.main_data:
+	x: DB 0 
+	y: DB 0 
+.main_data:
 	.UNDEF: DB 255
 .print_string_data_01:
 	DB	"10+56="
@@ -55,3 +57,20 @@ print_number:
 	PUSH .UNDEF
 	PUSH C
 	RET
+add:
+	POP C
+	POP B
+	POP A
+	ADD A,B
+	PUSH A
+	PUSH C
+	RET
+main:
+		
+	PUSH .print_string_data_01
+	CALL print_string
+	POP A	
+	PUSH .print_number_data_01
+	CALL print_number
+	POP A
+	HLT

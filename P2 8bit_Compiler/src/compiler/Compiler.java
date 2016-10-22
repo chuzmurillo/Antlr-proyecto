@@ -25,7 +25,7 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
 
    public void genCode(){
      this.program.genData();
-	//	this.program.genCode();
+	 this.program.genCode();
    }
    public JSAst compile(ParseTree tree){
       return visit(tree);
@@ -36,6 +36,9 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
 	                      .forEach( fun -> visit(fun) );
 	   return this.program = PROGRAM(this.statements);
    }
+   
+   
+   
    @Override
    public JSAst visitEightFunction(EightBitParser.EightFunctionContext ctx){
       
@@ -131,7 +134,7 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
 	  if(ctx.arguments()!=null){
 	  JSBlock args = (JSBlock)visit(ctx.arguments());
 	  List <JSAst> mas = ARGS(args.getMembers());
-	 // System.err.print("text de arguments = " + ctx.arguments().getText()+ "\n");
+	  System.err.print("id = "+ ctx.id().getText()+ " ,mas = "+ ctx.arguments().getText());
 	  return ARITH(id,mas);
 	  }
 	  return id;
@@ -140,7 +143,6 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    
       @Override
 		public JSAst visitOperTDArithSingle(EightBitParser.OperTDArithSingleContext ctx){
-	   //System.err.println(" OperTDArithSingle " + ctx.getText() + ctx.oper);
 	   JSAst oper = ( ctx.oper.getType() == EightBitParser.MUL ) ? MUL : DIV;
 	   JSAst right = visit(ctx.arithSingle());
 	   return OPERATION(oper, null, right);

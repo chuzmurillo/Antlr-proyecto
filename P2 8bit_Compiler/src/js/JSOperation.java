@@ -13,21 +13,26 @@ public class JSOperation implements  JSAst{
   }
   public void genCode(PrintStream out){
 
-    left.genCode(out);
+		//left.genCode(out);
+		//right.genCode(out);
+      out.print("	POP B");
+      out.print("\n	POP A");
     if(oper.getText().equals("+"))
-      out.println("ADD A,B");
+      out.println("\n	ADD A,B");
     if(oper.getText().equals("-"))
-      out.println("SUB A,B");
+      out.println("	SUB A,B");
     if(oper.getText().equals("*"))
-      out.println("MUL A,B");
+      out.println("	MUL B");
     if(oper.getText().equals("/"))
-      out.println("DIV A,B");
-    right.genCode(out);
+      out.println("	DIV B");
+	  out.print("	PUSH A\n");
   }
 
   public void genData(PrintStream out){
-    left.genData(out);
-    oper.genData(out);
+	left.genData(out);
+    out.print(": DB 0 \n	");
     right.genData(out);
+    out.print(": DB 0 \n");
+    //oper.genData(out);
   }
 }

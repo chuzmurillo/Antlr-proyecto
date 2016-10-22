@@ -30,8 +30,16 @@ public class JSFunction implements JSAst{
 
    public void genCode(PrintStream out){
 	out.format("%s:\n	", this.name.getValue());
-	   if (this.body != null)
+	if(!this.name.getValue().equals("main")){
+     
+	  out.print("POP C\n");
+	  // if (this.body != null)
 	      this.body.genCode(out);
+	  out.print("	PUSH C\n");
+	  out.print("	RET\n");
+		}else{
+		this.body.genCode(out);
+	}
    }
    
    
