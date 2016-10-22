@@ -60,11 +60,32 @@ print_number:
 	PUSH C
 	RET
 add:
-	POP C
+	.add_prolog:
+POP C
+POP A
+POP B
+PUSH [x]
+PUSH [y]
+PUSH [add_ra]
+MOV [add_ra], C
+MOV [add_x], B
+MOV [add_y], A
+.add_body:
 	POP B
 	POP A
 	ADD A,B
 	PUSH A
+.add_return:
+POP A
+MOV C, [add_ra]
+POP B
+MOV [add_ra], B
+POP B
+MOV [add_x], B
+PUSH A
+POP B
+MOV [add_y], B
+PUSH A
 	PUSH C
 	RET
 main:

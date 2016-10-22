@@ -8,7 +8,7 @@ public class JSFunction implements JSAst{
    private JSId name;
    private List<JSAst> formals;
    private JSAst body;
-   
+   int i;
    public JSFunction(List<JSAst> formals, JSAst body){
       this(UNK, formals, body);
    }
@@ -37,34 +37,58 @@ public class JSFunction implements JSAst{
 	   this.body.genData(out);
    }
 
-   public void genCode(PrintStream out){
-		
+   public void genCode(PrintStream out){	
 	  /*if(parametros.size()!=0){
 	  parametros.get(0).genCode(out);
 	  out.print("tamaño de la vara -------------------------->"+parametros.size());
 	  }*/
 	out.format("%s:\n	", this.name.getValue());
 	if(!this.name.getValue().equals("main")){
-		 /*out.print(".:\n");
-
- .add_Prolog:
-POP C
-POP A
-POP B
-PUSH [add_y]
-PUSH [add_x]
-PUSH [add_ra]
-MOV [add_ra], C
-MOV [add_x], B
-MOV [add_y], A
- .add_Body:*/
-	  out.print("POP C\n");
-	  // if (this.body != null)
-	      this.body.genCode(out);
+		 out.print("."+this.name.getValue()+"_prolog:\n");
+		 out.print("POP C\n");
+		 out.print("POP A\n");
+		 out.print("POP B\n");	
+		 formals.stream().forEach(f ->{
+			out.print("PUSH ["); 
+			f.genCode(out);
+			out.println("]");
+		});
+		 out.print("PUSH ["+this.name.getValue()+"_ra]\n");	
+		 out.print("MOV ["+this.name.getValue()+"_ra], C\n");
+		 i=0;
+		 formals.stream().forEach(f ->{
+			out.print("MOV ["+this.name.getValue()+"_"); 
+			f.genCode(out);
+			out.print("],");
+			if(i==0){
+				out.print(" B");
+			}
+			else{
+				out.print(" A");
+			}
+			out.print("\n");
+			i++;
+		});	
+		out.print("."+this.name.getValue()+"_body:\n");
+	  ////////////////////////////
+	   if (this.body != null)
+	    this.body.genCode(out);
+		///////////////////////
+		out.print("."+this.name.getValue()+"_return:\n");
+		out.println("POP A");
+		out.print("MOV C, ["+this.name.getValue()+"_ra]\n");
+		out.println("POP B");
+		out.print("MOV ["+this.name.getValue()+"_ra], B\n");
+		 formals.stream().forEach(f ->{
+			out.print("POP B\n");
+			out.print("MOV ["+this.name.getValue()+"_"); 
+			f.genCode(out);
+			out.println("], B");
+			out.println("PUSH A");
+		});	
 	  out.print("	PUSH C\n");
 	  out.print("	RET\n");
-		}else{
-			
+		}else{			
 		this.body.genCode(out);
 	}
    }
