@@ -16,44 +16,17 @@ public class JSCall implements JSAst{
    }
 
    public void genData(PrintStream out){
-   if (this.args != null){
-	   if(parametros.size()!= 0){
-		   JSAst id = parametros.get(0);
-       this.args
-           .stream()
-           .filter(x -> x != null)
-           .forEach(x -> {  
-				out.print(".");
-				this.f.genData(out);  
-				out.print("_data_01:\n	");
-				id.genCode(out);
-				out.print("_");
-				parametros.get(1).genCode(out);
-				out.print(": DB ");
-				x.genData(out); 
-				out.println("");
-				
-				id.genCode(out);
-				out.print("_");
-				parametros.get(2).genCode(out);
-				out.print(": DB ");
-				x.genData(out); 
-				out.println("");
-				});
-		out.print("\n	DB	0");
-   }else{
+
 	   this.args
            .stream()
            .filter(x -> x != null)
            .forEach(x -> {  
-				out.print(".");
-				this.f.genData(out);  
-				out.print("_data_01:\n	DB	");
-				x.genData(out); 
-				});
-		out.print("\n	DB	0"); 
-   }
-   }
+    out.print(".");
+    this.f.genData(out);  
+    out.print("_data_01:\n DB ");
+    x.genData(out); 
+    out.println("");
+    });
   }
    public void genCode(PrintStream out){
 	   

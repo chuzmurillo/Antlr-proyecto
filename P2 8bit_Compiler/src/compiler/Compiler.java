@@ -43,9 +43,10 @@ public class Compiler extends EightBitBaseVisitor<JSAst> implements JSEmiter{
    public JSAst visitEightFunction(EightBitParser.EightFunctionContext ctx){
       
     JSId id = (JSId)visit(ctx.id());
-	  JSAst f = visit(ctx.formals());
-	  JSAst body = visit(ctx.funBody());
-	  JSAst function = FUNCTION(id, FORMALS(f), body);
+	  JSBlock f = (JSBlock)visit(ctx.formals());
+   JSAst body = visit(ctx.funBody());
+   List<JSAst> form = FORMALS(f.getMembers());
+   JSAst function = FUNCTION(id, form, body);
 	  this.statements.add(function);
 	  return function;
    }

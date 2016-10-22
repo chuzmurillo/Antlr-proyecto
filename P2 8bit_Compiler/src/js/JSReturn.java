@@ -14,7 +14,7 @@ public class JSReturn implements JSAst{
    }
    public void genData(PrintStream out){
       //out.print("return ");
-	  this.e.genData();
+	//  this.e.genData();
 	  //out.println(";");
    }
 }

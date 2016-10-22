@@ -1,26 +1,22 @@
 .init:
    MOV D, 232
    JMP main
-
-xy.add_data:
-	x: DB 0 
-	y: DB 0 
-
+.add_data:
+	.add_ra:
+ DB 0
+.add_x:
+ DB 0
+.add_y:
+ DB 0
 .main_data:
 	.UNDEF: DB 255
 .print_string_data_01:
-	add_xy: DB "10+56="
-add_main: DB "10+56="
-
-	DB	0.print_number_data_01:
-	add_xy: DB 10.0
+ DB "10+56="
+.print_number_data_01:
+ DB 10.0
 	DB	56.0
 
-add_main: DB 10.0
-	DB	56.0
-
-
-	DB	0print_string:
+print_string:
 	POP C
 	POP B
 	PUSH C

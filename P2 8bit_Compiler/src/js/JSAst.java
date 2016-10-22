@@ -19,5 +19,5 @@ public interface JSAst{
    default String getText(){
      return  "***DEFAULT TEXT***";
    }
-   List<JSAst> parametros = new LinkedList<JSAst>();
+  // List<JSAst> parametros = new LinkedList<JSAst>();
 }

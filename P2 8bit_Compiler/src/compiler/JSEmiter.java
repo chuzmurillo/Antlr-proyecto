@@ -55,6 +55,7 @@ public interface JSEmiter{
    default List<JSAst> ARGS(JSAst... args){ return Arrays.asList(args);}
    default List<JSAst> ARGS(List<JSAst> args){ return args;}
    default List<JSAst> FORMALS(JSAst... args){ return Arrays.asList(args);}
+    default List<JSAst> FORMALS(List<JSAst> args){ return args;}
    
    
    default JSAst RET(JSAst e){ return new JSReturn(e);}

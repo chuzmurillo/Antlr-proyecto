@@ -20,17 +20,20 @@ public class JSFunction implements JSAst{
    }
 
    public void genData(PrintStream out){
-	   
-	  parametros.add(name);
-	  
-	  this.formals.stream().
-		forEach(f -> parametros.add(f));
-		
 	out.format(".%s_data:\n	", this.name.getValue());
    if(this.name.getValue().equals("main")){
-       out.print(".UNDEF: DB 255\n");
+    out.print(".UNDEF: DB 255\n");
     }
-	   if (this.body != null)
+	else{
+		out.println("."+this.name.getValue()+"_ra:"); 
+		out.println(" DB 0"); 
+		formals.stream().forEach(f ->{
+			out.print("."+this.name.getValue()+"_"); 
+			f.genCode(out);
+			out.println(":\n DB 0");
+		});
+	}
+	 if (this.body != null)
 	   this.body.genData(out);
    }
 
@@ -42,7 +45,19 @@ public class JSFunction implements JSAst{
 	  }*/
 	out.format("%s:\n	", this.name.getValue());
 	if(!this.name.getValue().equals("main")){
-     
+		 /*out.print(".:\n");
+
+ .add_Prolog:
+POP C
+POP A
+POP B
+PUSH [add_y]
+PUSH [add_x]
+PUSH [add_ra]
+MOV [add_ra], C
+MOV [add_x], B
+MOV [add_y], A
+ .add_Body:*/
 	  out.print("POP C\n");
 	  // if (this.body != null)
 	      this.body.genCode(out);
